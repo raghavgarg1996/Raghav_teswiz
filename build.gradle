@@ -144,8 +144,9 @@ task run(type: JavaExec) {
 
         def configFile = System.getenv("CONFIG")
         if (null == configFile || !file(configFile).exists()) {
-            println("CONFIG file not provided, or does not exist")
-            println("Run the test by providing the CONFIG file not provided, or does not exist")
+            configFile=System.getProperty("user.dir")+"/configs/vodqa_local_config.properties";
+  //          println("CONFIG file not provided, or does not exist")
+   //         println("Run the test by providing the CONFIG file not provided, or does not exist")
             assert file(configFile).exists()
         }
 
@@ -157,6 +158,7 @@ task run(type: JavaExec) {
 //                ? "./configs/theapp_pcloudy_config.properties"
 //                : "./configs/theapp_local_config.properties"
 //        configFile = System.getenv("CONFIG") ? System.getenv("CONFIG") : configFile
+
 
         systemProperties = System.properties
         def runnerArgs = [
