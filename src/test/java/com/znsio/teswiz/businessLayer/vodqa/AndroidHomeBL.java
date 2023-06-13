@@ -4,6 +4,7 @@ import com.context.TestExecutionContext;
 import com.znsio.teswiz.entities.Platform;
 import com.znsio.teswiz.entities.SAMPLE_TEST_CONTEXT;
 import com.znsio.teswiz.runner.Runner;
+import com.znsio.teswiz.screen.vodqa.AndroidHomeScreen;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 
@@ -33,4 +34,7 @@ public class AndroidHomeBL {
     }
 
 
+    public AndroidHomeBL appWorksInBackground() {
+        AndroidHomeScreen.get().validateAppWorkInBackground();
+    }
 }
