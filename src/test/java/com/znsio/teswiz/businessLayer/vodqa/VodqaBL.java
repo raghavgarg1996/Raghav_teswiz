@@ -40,6 +40,6 @@ public class VodqaBL {
 
     public AndroidHomeBL navigateToHomeScreen() {
         VodqaScreen.get().clickOnHomeButton();
-        return this;
+        return new AndroidHomeBL();
     }
 }

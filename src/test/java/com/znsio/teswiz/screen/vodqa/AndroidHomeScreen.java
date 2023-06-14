@@ -30,6 +30,7 @@ public abstract class AndroidHomeScreen {
     }
 
 
-    public abstract validateAppWorkInBackground();
+    public abstract AndroidHomeScreen validateAppWorkInBackground();
 
+    public abstract AndroidHomeScreen validateHomeScreen();
 }

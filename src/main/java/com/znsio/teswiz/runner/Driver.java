@@ -306,6 +306,7 @@ public class Driver {
         throw new NotImplementedException("To be migrated to appium 2.0");
         // todo - implement for appium2.0
 //        ((AppiumDriver) driver).runAppInBackground(Duration.ofSeconds(duration));
+
     }
 
     public void bringAppInForeground() {

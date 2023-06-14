@@ -36,5 +36,11 @@ public class AndroidHomeBL {
 
     public AndroidHomeBL appWorksInBackground() {
         AndroidHomeScreen.get().validateAppWorkInBackground();
+        return this;
+    }
+
+    public AndroidHomeBL validateHomeScreen() {
+        AndroidHomeScreen.get().validateHomeScreen();
+
     }
 }

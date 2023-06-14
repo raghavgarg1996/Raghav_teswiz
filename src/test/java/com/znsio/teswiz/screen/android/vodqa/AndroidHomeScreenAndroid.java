@@ -15,4 +15,9 @@ public class AndroidHomeScreenAndroid extends AndroidHomeScreen {
     }
 
 
+    @Override
+    public AndroidHomeScreen validateAppWorkInBackground() {
+        driver.putAppInBackground();
+        return
+    }
 }

@@ -32,7 +32,7 @@ public class VodQASteps {
 
     @When("I navigate to Android Home screen")
     public void navigateToAndroidScreen() {
-        new VodqaBL().navigateToHomeScreen();
+        new VodqaBL().navigateToHomeScreen().validateHomeScreen();
     }
 
     @Then("App should work in background")

@@ -1,5 +1,6 @@
 package com.znsio.teswiz.screen.android.vodqa;
 
+import com.znsio.teswiz.businessLayer.vodqa.AndroidHomeBL;
 import com.znsio.teswiz.runner.Driver;
 import com.znsio.teswiz.runner.Visual;
 import com.znsio.teswiz.screen.vodqa.AndroidHomeScreen;
@@ -28,8 +29,8 @@ public class VodqaScreenAndroid extends VodqaScreen {
 
     public AndroidHomeScreen clickOnHomeButton() {
         driver.waitTillElementIsPresent(byHomeScreenButtonXpath);
-        driver.findElement(byHomeScreenButtonXpath).click();
-        return this;
+        driver.putAppInBackground(34);
+        return AndroidHomeScreen.get();
     }
 
 
