@@ -29,7 +29,7 @@ public class VodqaScreenAndroid extends VodqaScreen {
 
     public AndroidHomeScreen clickOnHomeButton() {
         driver.waitTillElementIsPresent(byHomeScreenButtonXpath);
-        driver.putAppInBackground(34);
+        driver.findElement(byHomeScreenButtonXpath).click();
         return AndroidHomeScreen.get();
     }
 

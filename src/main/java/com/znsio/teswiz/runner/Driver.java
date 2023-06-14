@@ -303,9 +303,10 @@ public class Driver {
     }
 
     public void putAppInBackground(int duration) {
-        throw new NotImplementedException("To be migrated to appium 2.0");
+     //   throw new NotImplementedException("To be migrated to appium 2.0");
         // todo - implement for appium2.0
-//        ((AppiumDriver) driver).runAppInBackground(Duration.ofSeconds(duration));
+      //  ((AppiumDriver) driver).runAppInBackground(Duration.ofSeconds(duration));
+        ((AndroidDriver) driver).runAppInBackground(Duration.ofSeconds(duration));
 
     }
 

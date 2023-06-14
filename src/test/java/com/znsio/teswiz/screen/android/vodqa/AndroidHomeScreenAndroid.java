@@ -3,6 +3,8 @@ package com.znsio.teswiz.screen.android.vodqa;
 import com.znsio.teswiz.runner.Driver;
 import com.znsio.teswiz.runner.Visual;
 import com.znsio.teswiz.screen.vodqa.AndroidHomeScreen;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class AndroidHomeScreenAndroid extends AndroidHomeScreen {
     private final Driver driver;
@@ -16,8 +18,18 @@ public class AndroidHomeScreenAndroid extends AndroidHomeScreen {
 
 
     @Override
-    public AndroidHomeScreen validateAppWorkInBackground() {
-        driver.putAppInBackground();
-        return
+    public AndroidHomeScreen validateAppWorkInBackground(int time) {
+        driver.putAppInBackground(time);
+        return this;
+    }
+
+    @Override
+    public boolean validateHomeScreen() {
+        boolean isHomeScreenOpened = false;
+        WebElement appDrawerButton = driver.findElement(By.xpath(""));
+        if (appDrawerButton.isDisplayed()) {
+            isHomeScreenOpened = true;
+        }
+        return isHomeScreenOpened;
     }
 }

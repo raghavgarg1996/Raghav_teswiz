@@ -34,13 +34,13 @@ public class AndroidHomeBL {
     }
 
 
-    public AndroidHomeBL appWorksInBackground() {
-        AndroidHomeScreen.get().validateAppWorkInBackground();
+    public AndroidHomeBL appWorksInBackground(int time) {
+        AndroidHomeScreen.get().validateAppWorkInBackground(time);
         return this;
     }
 
     public AndroidHomeBL validateHomeScreen() {
         AndroidHomeScreen.get().validateHomeScreen();
-
+        return this;
     }
 }

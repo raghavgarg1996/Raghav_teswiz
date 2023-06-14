@@ -35,8 +35,8 @@ public class VodQASteps {
         new VodqaBL().navigateToHomeScreen().validateHomeScreen();
     }
 
-    @Then("App should work in background")
-    public void appShouldWorkInBackground() {
-        new AndroidHomeBL().appWorksInBackground();
+    @Then("App should work in background for {int} sec")
+    public void appShouldWorkInBackgroundForDefinedTime(int time) {
+        new AndroidHomeBL().appWorksInBackground(time);
     }
 }
