@@ -1,14 +1,11 @@
 package com.znsio.teswiz.screen.android.vodqa;
 
-import com.znsio.teswiz.businessLayer.vodqa.AndroidHomeBL;
 import com.znsio.teswiz.runner.Driver;
 import com.znsio.teswiz.runner.Visual;
-import com.znsio.teswiz.screen.vodqa.AndroidHomeScreen;
 import com.znsio.teswiz.screen.vodqa.VodqaScreen;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 public class VodqaScreenAndroid extends VodqaScreen {
-    public static final By byHomeScreenButtonXpath = AppiumBy.xpath("");
     private final Driver driver;
     private final Visual visually;
     private final String SCREEN_NAME = VodqaScreenAndroid.class.getSimpleName();
@@ -27,11 +24,10 @@ public class VodqaScreenAndroid extends VodqaScreen {
         return this;
     }
 
-    public AndroidHomeScreen clickOnHomeButton() {
-        driver.waitTillElementIsPresent(byHomeScreenButtonXpath);
-        driver.findElement(byHomeScreenButtonXpath).click();
-        return AndroidHomeScreen.get();
+    @Override
+    public VodqaScreen validateAppWorkInBackground(int time) {
+        driver.putAppInBackground(time);
+        return this;
     }
-
 
 }

@@ -1,11 +1,9 @@
 package com.znsio.teswiz.steps;
 
 
-import com.znsio.teswiz.businessLayer.vodqa.AndroidHomeBL;
 import com.znsio.teswiz.businessLayer.vodqa.VodqaBL;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 import com.context.TestExecutionContext;
 import com.context.SessionContext;
@@ -30,13 +28,10 @@ public class VodQASteps {
     }
 
 
-    @When("I navigate to Android Home screen")
-    public void navigateToAndroidScreen() {
-        new VodqaBL().navigateToHomeScreen().validateHomeScreen();
-    }
-
     @Then("App should work in background for {int} sec")
     public void appShouldWorkInBackgroundForDefinedTime(int time) {
-        new AndroidHomeBL().appWorksInBackground(time);
+        new VodqaBL().appWorksInBackground(time);
     }
+
+
 }

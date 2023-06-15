@@ -1,6 +1,5 @@
 package com.znsio.teswiz.screen.vodqa;
 
-import com.znsio.teswiz.businessLayer.vodqa.AndroidHomeBL;
 import com.znsio.teswiz.entities.Platform;
 import com.znsio.teswiz.runner.Driver;
 import com.znsio.teswiz.runner.Drivers;
@@ -31,5 +30,6 @@ public abstract class VodqaScreen {
 
     public abstract VodqaScreen login();
 
-    public abstract AndroidHomeScreen clickOnHomeButton();
+    public abstract VodqaScreen validateAppWorkInBackground(int time);
+
 }

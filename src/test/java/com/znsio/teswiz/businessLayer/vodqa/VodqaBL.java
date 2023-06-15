@@ -38,8 +38,8 @@ public class VodqaBL {
         return this;
     }
 
-    public AndroidHomeBL navigateToHomeScreen() {
-        VodqaScreen.get().clickOnHomeButton();
-        return new AndroidHomeBL();
+    public VodqaBL appWorksInBackground(int time) {
+        VodqaScreen.get().validateAppWorkInBackground(time);
+        return this;
     }
 }
