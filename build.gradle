@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat
 
 buildscript {
     ext {
-        gradleVersion = '7.3.3'
+        gradleVersion = '8.1.1'
         assertJVersion = '3.24.2'
         atdVersion = '13.1.0'
         applitoolsSeleniumVersion = '5.56.0'
@@ -30,13 +30,8 @@ plugins {
     id "jacoco"
 }
 
-jacoco {
-    toolVersion = "0.8.8"
-//    reportsDirectory = layout.buildDirectory.dir('jacoco')
-}
-
 group = 'com.github.znsio'
-version '0.0.80'
+version '0.0.801'
 
 repositories {
     mavenLocal()
@@ -199,11 +194,38 @@ test {
     }
 
     reports {
-        html.enabled(true)
-        junitXml.enabled(true)
+     //   html.enabled(true)
+        html.required = true
+  //      junitXml.enabled(true)
+        junitXml.required = true
         html.destination(file("$buildDir/unit-test-results"))
         junitXml.destination(file("$buildDir/unit-test-results"))
     }
 
+    jacoco {
+        enabled = true
+    }
+
     finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+       applyTo run
+    reportsDirectory = layout.buildDirectory.dir('jacoco')
+}
+
+jacocoTestReport {
+    dependsOn run // tests are required to run before generating the report
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacoco')
+    }
+}
+
+
+tasks.register('applicationCodeCoverageReport', JacocoReport) {
+    executionData run
+    sourceSets sourceSets.main
 }
