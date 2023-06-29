@@ -27,7 +27,7 @@ plugins {
     id "idea"
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'maven-publish'
-    id "jacoco"
+    id 'jacoco-report-aggregation'
 }
 
 group = 'com.github.znsio'
@@ -201,31 +201,14 @@ test {
         html.destination(file("$buildDir/unit-test-results"))
         junitXml.destination(file("$buildDir/unit-test-results"))
     }
-
-    jacoco {
-        enabled = true
-    }
-
-    finalizedBy jacocoTestReport
 }
 
-jacoco {
-    toolVersion = "0.8.8"
-       applyTo run
-    reportsDirectory = layout.buildDirectory.dir('jacoco')
+//application {
+//    mainClass = 'com.znsio.teswiz'
+//}
+
+tasks.named('check') {
+    dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
 }
 
-jacocoTestReport {
-    dependsOn run // tests are required to run before generating the report
-    reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacoco')
-    }
-}
-
-
-tasks.register('applicationCodeCoverageReport', JacocoReport) {
-    executionData run
-    sourceSets sourceSets.main
-}
+jacocoTestCoverageVerification.dependsOn jacocoTestReport
