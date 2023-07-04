@@ -2,6 +2,7 @@ package com.znsio.teswiz.screen.android.ajio;
 
 import com.znsio.teswiz.runner.Driver;
 import com.znsio.teswiz.runner.Visual;
+import com.znsio.teswiz.screen.ajio.ProductScreen;
 import com.znsio.teswiz.screen.ajio.SearchScreen;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -15,6 +16,8 @@ public class SearchScreenAndroid
     private static final Logger LOGGER = Logger.getLogger(SCREEN_NAME);
     private static final By byResultsId = By.id("com.ril.ajio:id/tv_count_plp_header_is");
     private static final By byProductId = By.id("com.ril.ajio:id/plp_row_product_iv");
+    private static final By byProductListTitleId = By.id("com.ril.ajio:id/toolbar_title_tv");
+
     private final Driver driver;
     private final Visual visually;
 
@@ -32,11 +35,26 @@ public class SearchScreenAndroid
         return numberOfProductFound;
     }
 
+
     @Override
-    public void selectProduct() {
+    public ProductScreen selectProduct() {
         LOGGER.info("selection of Product in the result page");
-        driver.waitTillElementIsPresent(By.id("com.ril.ajio:id/layout_category_container")).click();
+        if (!(driver.isElementPresent(By.id("com.ril.ajio:id/layout_category_container")))) {
+            driver.tapOnMiddleOfScreen();
+        }
+  //      driver.waitTillElementIsPresent(By.id("com.ril.ajio:id/layout_category_container")).click();
         List<WebElement> list = driver.waitTillPresenceOfAllElements(byProductId);
         list.get(0).click();
+        return ProductScreen.get();
+    }
+
+    @Override
+    public boolean isProductListLoaded(String product) {
+        LOGGER.info(String.format("Verifying if %s list is loaded",product));
+        if (!(driver.isElementPresent(byProductListTitleId)))
+            driver.tapOnMiddleOfScreen();
+        String productLoaded = driver.waitTillElementIsVisible(byProductListTitleId).getText().trim();
+        LOGGER.info("Loaded product: " +productLoaded);
+        return productLoaded.contains(product);
     }
 }
