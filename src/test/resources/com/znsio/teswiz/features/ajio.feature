@@ -12,3 +12,5 @@ Feature: Ajio tests
   Scenario: As a guest user, I should be able to flick and see images in product details
     Given I open "Jackets" from "Topwear" section for "Men"
     When I select the first result
+    Then I should be able to perform flick and view images
+

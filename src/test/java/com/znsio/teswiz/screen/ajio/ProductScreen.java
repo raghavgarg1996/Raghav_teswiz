@@ -33,4 +33,7 @@ public abstract class ProductScreen {
 
     public abstract boolean isProductDetailsLoaded();
 
+    public abstract ProductScreen flickImage();
+
+    public abstract boolean areOtherImagesVisible();
 }

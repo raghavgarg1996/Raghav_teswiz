@@ -17,6 +17,7 @@ public class ProductScreenAndroid
     private static final By byViewBagButtonXpath = By.xpath(
             "//android.widget.TextView[@text='View Bag']");
     private static final By byBrandNameId = By.id("com.ril.ajio:id/product_name");
+    private static final By byProductImageId = By.id("com.ril.ajio:id/pdp_product_img");
     private final Driver driver;
     private final Visual visually;
 
@@ -53,4 +54,20 @@ public class ProductScreenAndroid
         return true;
     }
 
+    @Override
+    public ProductScreen flickImage() {
+        LOGGER.info("Performing flick to view multiple product images");
+            driver.tapOnMiddleOfScreen();
+            driver.tapOnMiddleOfScreen();
+            driver.flick(driver.findElement(byProductImageId),1000,1000);
+        return this;
+    }
+
+    @Override
+    public boolean areOtherImagesVisible() {
+        LOGGER.info("Verifying if other images are visible");
+        visually.checkWindow(SCREEN_NAME, "Other visible images");
+
+        return true;
+    }
 }

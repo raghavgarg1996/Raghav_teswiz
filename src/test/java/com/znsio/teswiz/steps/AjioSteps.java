@@ -55,4 +55,9 @@ public class AjioSteps {
     public void iSelectTheFirstResult() {
         new ProductBL().selectTheFirstResultFromList();
     }
+
+    @Then("I should be able to perform flick and view images")
+    public void iShouldBeAbleToPerformFlickAndViewImages() {
+        new ProductBL().flickAndViewImage();
+    }
 }

@@ -42,4 +42,10 @@ public class ProductBL {
                 .isTrue();
         return this;
     }
+
+    public ProductBL flickAndViewImage() {
+        boolean isFlickedHappened = ProductScreen.get().flickImage().areOtherImagesVisible();
+        assertThat(isFlickedHappened).as("Unable to flick and view other images").isTrue();
+        return this;
+    }
 }

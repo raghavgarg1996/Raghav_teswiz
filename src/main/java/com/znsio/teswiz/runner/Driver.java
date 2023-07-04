@@ -4,15 +4,13 @@ import com.google.common.collect.ImmutableMap;
 import com.znsio.teswiz.entities.Direction;
 import com.znsio.teswiz.entities.Platform;
 import com.znsio.teswiz.exceptions.FileNotUploadedException;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.HidesKeyboard;
-import io.appium.java_client.MobileBy;
+import io.appium.java_client.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.HasNotifications;
 import io.appium.java_client.android.StartsActivity;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.SupportsContextSwitching;
+import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -602,5 +600,32 @@ public class Driver {
                 .addAction(touch.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
                 .addAction(touch.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         appiumDriver.perform(Arrays.asList(clickPosition));
+    }
+
+    public void flick (WebElement element, int endPointX, int endPointY) {
+ /*       TouchAction touchAction = new TouchAction((PerformsTouchActions) driver);
+
+        int x = element.getLocation().getX();
+        int y = element.getLocation().getY();
+
+        touchAction.press(PointOption.point(x, y))
+                .waitAction()
+                .moveTo(PointOption.point(endPointX, endPointY))
+                .release()
+                .perform();   */
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence flickAction = new Sequence(finger, 0);
+
+        int x = element.getLocation().getX();
+        int y = element.getLocation().getY();
+
+        flickAction.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), x, y));
+        flickAction.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        flickAction.addAction(finger.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), endPointX, endPointY));
+        flickAction.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+
+        ((AppiumDriver)driver).perform(Arrays.asList(flickAction));
     }
 }
