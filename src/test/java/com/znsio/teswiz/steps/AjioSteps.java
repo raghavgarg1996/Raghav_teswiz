@@ -58,6 +58,6 @@ public class AjioSteps {
 
     @Then("I should be able to perform flick and view images")
     public void iShouldBeAbleToPerformFlickAndViewImages() {
-        new ProductBL().flickAndViewImage();
+        new ProductBL().flickAndViewImages();
     }
 }

@@ -35,5 +35,5 @@ public abstract class ProductScreen {
 
     public abstract ProductScreen flickImage();
 
-    public abstract boolean areOtherImagesVisible();
+    public abstract int isYAxisCoordinatesChanged();
 }

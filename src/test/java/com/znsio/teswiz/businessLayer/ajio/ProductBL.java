@@ -43,9 +43,10 @@ public class ProductBL {
         return this;
     }
 
-    public ProductBL flickAndViewImage() {
-        boolean isFlickedHappened = ProductScreen.get().flickImage().areOtherImagesVisible();
-        assertThat(isFlickedHappened).as("Unable to flick and view other images").isTrue();
+    public ProductBL flickAndViewImages() {
+        int finalYAxisCoordinates = ProductScreen.get().flickImage().isYAxisCoordinatesChanged();
+        int initialYAxisCoordinates = (int) context.getTestState(SAMPLE_TEST_CONTEXT.INITIAL_X_AXIS);
+        assertThat(initialYAxisCoordinates).as("Unable to perform flick action").isNotEqualTo(finalYAxisCoordinates);
         return this;
     }
 }

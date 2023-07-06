@@ -1,6 +1,9 @@
 package com.znsio.teswiz.screen.android.ajio;
 
+import com.context.TestExecutionContext;
+import com.znsio.teswiz.entities.SAMPLE_TEST_CONTEXT;
 import com.znsio.teswiz.runner.Driver;
+import com.znsio.teswiz.runner.Runner;
 import com.znsio.teswiz.runner.Visual;
 import com.znsio.teswiz.screen.ajio.CartScreen;
 import com.znsio.teswiz.screen.ajio.ProductScreen;
@@ -20,10 +23,14 @@ public class ProductScreenAndroid
     private static final By byProductImageId = By.id("com.ril.ajio:id/pdp_product_img");
     private final Driver driver;
     private final Visual visually;
+    private final TestExecutionContext context;
 
     public ProductScreenAndroid(Driver driver, Visual visually) {
         this.driver = driver;
         this.visually = visually;
+        long threadId = Thread.currentThread().getId();
+        context = Runner.getTestExecutionContext(threadId);
+
     }
 
     @Override
@@ -51,37 +58,34 @@ public class ProductScreenAndroid
     @Override
     public boolean isProductDetailsLoaded() {
         LOGGER.info("Verifying if Product Details page is loaded");
-        return true;
+        boolean isProductedLoaded = false;
+        driver.tapOnMiddleOfScreen();
+        if (driver.isElementPresent(byProductImageId)) {
+            isProductedLoaded =  true;
+        }
+        return isProductedLoaded;
     }
 
     @Override
     public ProductScreen flickImage() {
         LOGGER.info("Performing flick to view multiple product images");
         driver.tapOnMiddleOfScreen();
-        driver.tapOnMiddleOfScreen();
-
-
-        int startPointX = 832;
-//        int startPointY = 212;
-//        int endPointX = 0;
-//        int endPointY = 212;
-
-       // driver.flick(startPointX, startPointY, endPointX, endPointY);
-
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        driver.flick2();
+        int initialLocation = driver.findElement(byProductImageId).getLocation().getY();
+        context.addTestState(SAMPLE_TEST_CONTEXT.INITIAL_X_AXIS, initialLocation);
+        driver.flick();
         return this;
     }
 
     @Override
-    public boolean areOtherImagesVisible() {
-        LOGGER.info("Verifying if other images are visible");
-        visually.checkWindow(SCREEN_NAME, "Other visible images");
-
-        return true;
+    public int isYAxisCoordinatesChanged() {
+        LOGGER.info("Verifying if flick happened");
+        visually.checkWindow(SCREEN_NAME, "Other images are visible");
+        int yaxisLocation = driver.findElement(byProductImageId).getLocation().getY();
+        return yaxisLocation;
     }
 }

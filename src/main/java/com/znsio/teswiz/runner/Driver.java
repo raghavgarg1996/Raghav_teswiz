@@ -598,32 +598,21 @@ public class Driver {
         appiumDriver.perform(Arrays.asList(clickPosition));
     }
 
-    public void flick(int startPointX, int startPointY, int endPointX, int endPointY) {
-        AppiumDriver appiumDriver = (AppiumDriver) this.driver;
-        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-        Sequence sequence = new Sequence(finger, 1);
-        sequence.addAction(finger.createPointerMove(ofMillis(0), PointerInput.Origin.viewport(), startPointX, startPointY));
-        sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.MIDDLE.asArg()));
-        sequence.addAction(new Pause(finger, ofMillis(200)));  // Adjust the duration of the pause as needed
-        sequence.addAction(finger.createPointerMove(ofMillis(200), PointerInput.Origin.viewport(), endPointX, endPointY));
-        sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.MIDDLE.asArg()));
-        appiumDriver.perform(singletonList(sequence));
-    }
+//    public void flick(int startPointX, int startPointY, int endPointX, int endPointY) {
+//        AppiumDriver appiumDriver = (AppiumDriver) this.driver;
+//        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+//        Sequence sequence = new Sequence(finger, 1);
+//        sequence.addAction(finger.createPointerMove(ofMillis(0), PointerInput.Origin.viewport(), startPointX, startPointY));
+//        sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.MIDDLE.asArg()));
+//        sequence.addAction(new Pause(finger, ofMillis(200)));  // Adjust the duration of the pause as needed
+//        sequence.addAction(finger.createPointerMove(ofMillis(200), PointerInput.Origin.viewport(), endPointX, endPointY));
+//        sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.MIDDLE.asArg()));
+//        appiumDriver.perform(singletonList(sequence));
+//    }
 
-    public void flick2() {
+    public void flick() {
         AppiumDriver appiumDriver = (AppiumDriver) this.driver;
         Dimension screenSize = driver.manage().window().getSize();
-
- //       int startX = screenSize.width / 2;
- //       int startY = screenSize.height / 2;
- //       int endX = screenSize.width - 100;
- //       int endY = startY;
-
-//        int startX = 700;
-//        int startY = 212;
-//        int endX = 0;
-//        int endY = 212;
-
 
         int startX = screenSize.width - 100;
         int startY = screenSize.height / 2;
