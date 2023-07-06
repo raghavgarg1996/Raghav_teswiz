@@ -634,7 +634,7 @@ public class Driver {
         Sequence flick = new Sequence(finger, 0);
         flick.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
         flick.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        flick.addAction(finger.createPointerMove(Duration.ofMillis(250), PointerInput.Origin.viewport(), endX, endY));
+        flick.addAction(finger.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), endX, endY));
         flick.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         appiumDriver.perform(Arrays.asList(flick));
