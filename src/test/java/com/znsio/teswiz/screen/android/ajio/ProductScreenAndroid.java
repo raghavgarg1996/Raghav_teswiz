@@ -57,9 +57,23 @@ public class ProductScreenAndroid
     @Override
     public ProductScreen flickImage() {
         LOGGER.info("Performing flick to view multiple product images");
-            driver.tapOnMiddleOfScreen();
-            driver.tapOnMiddleOfScreen();
-            driver.flick(driver.findElement(byProductImageId),1000,1000);
+        driver.tapOnMiddleOfScreen();
+        driver.tapOnMiddleOfScreen();
+
+
+        int startPointX = 832;
+//        int startPointY = 212;
+//        int endPointX = 0;
+//        int endPointY = 212;
+
+       // driver.flick(startPointX, startPointY, endPointX, endPointY);
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        driver.flick2();
         return this;
     }
 

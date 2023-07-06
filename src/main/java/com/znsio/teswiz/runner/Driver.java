@@ -30,11 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Iterator;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 import static com.znsio.teswiz.tools.Wait.waitFor;
@@ -602,30 +598,45 @@ public class Driver {
         appiumDriver.perform(Arrays.asList(clickPosition));
     }
 
-    public void flick (WebElement element, int endPointX, int endPointY) {
- /*       TouchAction touchAction = new TouchAction((PerformsTouchActions) driver);
+    public void flick(int startPointX, int startPointY, int endPointX, int endPointY) {
+        AppiumDriver appiumDriver = (AppiumDriver) this.driver;
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence sequence = new Sequence(finger, 1);
+        sequence.addAction(finger.createPointerMove(ofMillis(0), PointerInput.Origin.viewport(), startPointX, startPointY));
+        sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.MIDDLE.asArg()));
+        sequence.addAction(new Pause(finger, ofMillis(200)));  // Adjust the duration of the pause as needed
+        sequence.addAction(finger.createPointerMove(ofMillis(200), PointerInput.Origin.viewport(), endPointX, endPointY));
+        sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.MIDDLE.asArg()));
+        appiumDriver.perform(singletonList(sequence));
+    }
 
-        int x = element.getLocation().getX();
-        int y = element.getLocation().getY();
+    public void flick2() {
+        AppiumDriver appiumDriver = (AppiumDriver) this.driver;
+        Dimension screenSize = driver.manage().window().getSize();
 
-        touchAction.press(PointOption.point(x, y))
-                .waitAction()
-                .moveTo(PointOption.point(endPointX, endPointY))
-                .release()
-                .perform();   */
+ //       int startX = screenSize.width / 2;
+ //       int startY = screenSize.height / 2;
+ //       int endX = screenSize.width - 100;
+ //       int endY = startY;
+
+//        int startX = 700;
+//        int startY = 212;
+//        int endX = 0;
+//        int endY = 212;
+
+
+        int startX = screenSize.width - 100;
+        int startY = screenSize.height / 2;
+        int endX = screenSize.width / 2;
+        int endY = screenSize.height / 2;
 
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-        Sequence flickAction = new Sequence(finger, 0);
+        Sequence flick = new Sequence(finger, 0);
+        flick.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
+        flick.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        flick.addAction(finger.createPointerMove(Duration.ofMillis(250), PointerInput.Origin.viewport(), endX, endY));
+        flick.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
-        int x = element.getLocation().getX();
-        int y = element.getLocation().getY();
-
-        flickAction.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), x, y));
-        flickAction.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        flickAction.addAction(finger.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), endPointX, endPointY));
-        flickAction.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-
-        ((AppiumDriver)driver).perform(Arrays.asList(flickAction));
+        appiumDriver.perform(Arrays.asList(flick));
     }
 }
