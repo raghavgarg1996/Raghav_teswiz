@@ -60,6 +60,8 @@ public class ProductScreenAndroid
         LOGGER.info("Verifying if Product Details page is loaded");
         boolean isProductedLoaded = false;
         driver.tapOnMiddleOfScreen();
+        driver.waitTillElementIsPresent(byProductImageId);
+        driver.findElement(byProductImageId).click();
         if (driver.isElementPresent(byProductImageId)) {
             isProductedLoaded =  true;
         }
@@ -69,23 +71,17 @@ public class ProductScreenAndroid
     @Override
     public ProductScreen flickImage() {
         LOGGER.info("Performing flick to view multiple product images");
-        driver.tapOnMiddleOfScreen();
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        int initialLocation = driver.findElement(byProductImageId).getLocation().getY();
-        context.addTestState(SAMPLE_TEST_CONTEXT.INITIAL_X_AXIS, initialLocation);
+        driver.findElement(byProductImageId).click();
+        String initialElementId = driver.findElement(byProductImageId).getAttribute("bounds");
+        context.addTestState(SAMPLE_TEST_CONTEXT.INITIAL_ELEMENT_ID, initialElementId);
         driver.flick();
         return this;
     }
 
     @Override
-    public int isYAxisCoordinatesChanged() {
+    public String isElementIdChanged() {
         LOGGER.info("Verifying if flick happened");
         visually.checkWindow(SCREEN_NAME, "Other images are visible");
-        int yaxisLocation = driver.findElement(byProductImageId).getLocation().getY();
-        return yaxisLocation;
+        return driver.findElement(byProductImageId).getAttribute("bounds");
     }
 }
