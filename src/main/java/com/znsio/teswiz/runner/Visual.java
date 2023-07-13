@@ -107,7 +107,6 @@ public class Visual {
         // appiumEyesRunner = new ClassicRunner();
         // appiumEyesRunner.setDontCloseBatches(true);
         com.applitools.eyes.appium.Eyes appEyes = new com.applitools.eyes.appium.Eyes();
-
         appEyes.setServerUrl(
                 getValueFromConfig(APPLITOOLS.SERVER_URL, DEFAULT_APPLITOOLS_SERVER_URL));
         appEyes.setApiKey(getApplitoolsAPIKey(isVisualTestingEnabled));
@@ -134,6 +133,10 @@ public class Visual {
                             String.valueOf(getValueFromConfig(Setup.TARGET_ENVIRONMENT)));
         appEyes.addProperty("USER_NAME", USER_NAME);
         appEyes.setIgnoreDisplacements(getValueFromConfig(APPLITOOLS.IGNORE_DISPLACEMENT, true));
+        Configuration configuration = appEyes.getConfiguration();
+        configuration.setHideScrollbars(true);
+        appEyes.setConfiguration(configuration);
+
         try {
             String proxyUrl = (String) applitoolsConfig.get(APPLITOOLS.PROXY_URL);
             if (null != proxyUrl) {
@@ -190,7 +193,6 @@ public class Visual {
         configuration.setEnvironmentName(targetEnvironment);
         configuration.setMatchLevel(
                 (MatchLevel) getValueFromConfig(APPLITOOLS.DEFAULT_MATCH_LEVEL, MatchLevel.STRICT));
-
         configuration.setDisableBrowserFetching(
                 getValueFromConfig(APPLITOOLS.DISABLE_BROWSER_FETCHING, true));
         configuration.setSendDom(getValueFromConfig(APPLITOOLS.SEND_DOM, true));
