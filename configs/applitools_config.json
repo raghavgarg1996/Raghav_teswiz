@@ -1,6 +1,6 @@
 {
-  "serverUrl": "https://eyesapi.applitools.com/",
-  "defaultMatchLevel": "strict",
+  "serverUrl": "https://jioeyes.applitools.com/",
+  "defaultMatchLevel": "STRICT",
   "enableBenchmarkPerValidation": true,
   "sendDOM": true,
   "stitchMode": "css",
