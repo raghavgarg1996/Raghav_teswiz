@@ -18,7 +18,6 @@ public class AmazonSteps {
 
     }
 
-    @Given("I as a guest user perform scroll")
     public void iAsAGuestUserPerformScroll() {
         new AmazonHomeBL().scroll();
     }

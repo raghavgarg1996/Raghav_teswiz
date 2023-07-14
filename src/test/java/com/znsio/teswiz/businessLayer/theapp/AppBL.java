@@ -59,4 +59,9 @@ public class AppBL {
         AppLaunchScreen.get().goBack();
         return this;
     }
+
+    public AppBL scroll() {
+        AppLaunchScreen.get().performScroll();
+        return this;
+    }
 }

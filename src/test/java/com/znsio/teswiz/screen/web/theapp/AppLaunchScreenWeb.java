@@ -46,4 +46,14 @@ public class AppLaunchScreenWeb
     public ClipboardDemoScreen goToClipboardDemo() {
         return null;
     }
+
+    @Override
+    public AppLaunchScreen performScroll() {
+        driver.waitTillElementIsPresent(By.id("pageContent"),5);
+        driver.scrollDownByScreenSize();
+        visually.checkWindow(SCREEN_NAME, "Capturing scrollBar detao");
+        return this;
+    }
+
+
 }

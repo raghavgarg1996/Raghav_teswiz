@@ -37,4 +37,6 @@ public abstract class AppLaunchScreen {
     public abstract EchoScreen selectEcho();
 
     public abstract ClipboardDemoScreen goToClipboardDemo();
+
+    public abstract AppLaunchScreen performScroll();
 }

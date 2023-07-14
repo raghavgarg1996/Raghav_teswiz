@@ -162,4 +162,9 @@ public class TheAppSteps {
     public void changedTo(String oldUserPersona, String newUserPersona) {
         Drivers.assignNewPersonaToExistingDriver(oldUserPersona,newUserPersona,context);
     }
+
+    @Given("I as a guest user perform scroll")
+    public void iAsAGuestUserPerformScroll() {
+        new AppBL().scroll();
+    }
 }
