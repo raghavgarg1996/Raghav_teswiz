@@ -22,10 +22,8 @@ public class AmazonHomeScreenWeb extends AmazonHomeScreen {
     @Override
     public AmazonHomeScreen performScroll() {
         driver.waitTillElementIsPresent(By.id("pageContent"),5);
-        driver.scrollToBottom();
+        driver.scrollDownByScreenSize();
         visually.checkWindow(SCREEN_NAME, "Capturing scrollBar detao");
-
-  //      visually.
         return this;
     }
 }
