@@ -50,10 +50,9 @@ public class AppLaunchScreenWeb
     @Override
     public AppLaunchScreen performScroll() {
         driver.waitTillElementIsPresent(By.id("pageContent"),5);
-        driver.scrollDownByScreenSize();
-        visually.checkWindow(SCREEN_NAME, "Capturing scrollBar detao");
+        visually.checkWindow(SCREEN_NAME, "Capturing before scroll");
+        driver.scrollToBottom();
+        visually.checkWindow(SCREEN_NAME, "Capturing scrollBar details");
         return this;
     }
-
-
 }

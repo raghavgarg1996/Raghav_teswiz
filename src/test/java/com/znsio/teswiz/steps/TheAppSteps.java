@@ -165,6 +165,8 @@ public class TheAppSteps {
 
     @Given("I as a guest user perform scroll")
     public void iAsAGuestUserPerformScroll() {
+        LOGGER.info(System.out.printf("iStartTheApp - Persona:'%s'", SAMPLE_TEST_CONTEXT.ME));
+        Drivers.createDriverFor(SAMPLE_TEST_CONTEXT.ME, Runner.getPlatform(), context);
         new AppBL().scroll();
     }
 }
