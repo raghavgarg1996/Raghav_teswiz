@@ -50,7 +50,7 @@ public class RunTestCukes
         context.addTestState(APPLITOOLS.UFG_CONFIG, ufgConfig);
     }
 
-//    @After
+    @After
     public void afterTestScenario(Scenario scenario) {
         LOGGER.info(String.format("RunTestCukes: ThreadId: %d: in overridden afterTestScenario%n",
                                   Thread.currentThread().getId()));
