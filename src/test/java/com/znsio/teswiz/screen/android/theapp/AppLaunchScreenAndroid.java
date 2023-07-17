@@ -6,6 +6,7 @@ import com.znsio.teswiz.screen.theapp.AppLaunchScreen;
 import com.znsio.teswiz.screen.theapp.ClipboardDemoScreen;
 import com.znsio.teswiz.screen.theapp.EchoScreen;
 import com.znsio.teswiz.screen.theapp.LoginScreen;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
@@ -13,6 +14,8 @@ public class AppLaunchScreenAndroid
         extends AppLaunchScreen {
     private static final String SCREEN_NAME = AppLaunchScreenAndroid.class.getSimpleName();
     private static final Logger LOGGER = Logger.getLogger(SCREEN_NAME);
+    private static final String NOT_YET_IMPLEMENTED = " not yet implemented";
+
     private static final By byGoBackToHomeScreenButtonXpath = By.xpath(
             "//android.widget.ImageButton[@content-desc=\"Navigate Up\"]");
     private static final By byEchoMessageXpath = By.xpath(
@@ -51,5 +54,12 @@ public class AppLaunchScreenAndroid
         visually.checkWindow(SCREEN_NAME, "On app launch screen");
         driver.findElementByAccessibilityId(byClipboardDemoAccessibilityId).click();
         return ClipboardDemoScreen.get();
+    }
+
+    @Override
+    public AppLaunchScreen performScroll() {
+        throw new NotImplementedException(
+                SCREEN_NAME + ":" + new Throwable().getStackTrace()[0].getMethodName() + NOT_YET_IMPLEMENTED);
+
     }
 }

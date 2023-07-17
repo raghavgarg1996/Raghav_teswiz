@@ -107,7 +107,6 @@ public class Visual {
         // appiumEyesRunner = new ClassicRunner();
         // appiumEyesRunner.setDontCloseBatches(true);
         com.applitools.eyes.appium.Eyes appEyes = new com.applitools.eyes.appium.Eyes();
-
         appEyes.setServerUrl(
                 getValueFromConfig(APPLITOOLS.SERVER_URL, DEFAULT_APPLITOOLS_SERVER_URL));
         appEyes.setApiKey(getApplitoolsAPIKey(isVisualTestingEnabled));
@@ -123,7 +122,7 @@ public class Visual {
                 new FileLogger(applitoolsLogFileNameForApp, true, isVerboseLoggingEnabled));
 
         // todo - enhancements - https://applitools.com/docs/topics/general-concepts/visual-test-best-practices.html?Highlight=setMatchTimeout
-        // add setIgnoreCaret, setHideScrollbars, setIgnoreDisplacements
+        // add setIgnoreCaret, setHideScrollbars
         appEyes.addProperty(Setup.APP_NAME, appName);
         appEyes.addProperty("USER_PERSONA", userPersona);
         appEyes.addProperty(Setup.BRANCH_NAME,
@@ -133,6 +132,10 @@ public class Visual {
         appEyes.addProperty(Setup.TARGET_ENVIRONMENT,
                             String.valueOf(getValueFromConfig(Setup.TARGET_ENVIRONMENT)));
         appEyes.addProperty("USER_NAME", USER_NAME);
+        appEyes.setIgnoreDisplacements(getValueFromConfig(APPLITOOLS.IGNORE_DISPLACEMENT, true));
+        Configuration configuration = appEyes.getConfiguration();
+        configuration.setHideScrollbars(true);
+        appEyes.setConfiguration(configuration);
 
         try {
             String proxyUrl = (String) applitoolsConfig.get(APPLITOOLS.PROXY_URL);
@@ -190,7 +193,6 @@ public class Visual {
         configuration.setEnvironmentName(targetEnvironment);
         configuration.setMatchLevel(
                 (MatchLevel) getValueFromConfig(APPLITOOLS.DEFAULT_MATCH_LEVEL, MatchLevel.STRICT));
-
         configuration.setDisableBrowserFetching(
                 getValueFromConfig(APPLITOOLS.DISABLE_BROWSER_FETCHING, true));
         configuration.setSendDom(getValueFromConfig(APPLITOOLS.SEND_DOM, true));
@@ -201,7 +203,7 @@ public class Visual {
                 getValueFromConfig(APPLITOOLS.TAKE_FULL_PAGE_SCREENSHOT, true));
 
         addBrowserAndDeviceConfigForUFG(isUFG, configuration);
-
+//        configuration.setHideScrollbars(true);
         webEyes.setConfiguration(configuration);
 
         applitoolsLogFileNameForWeb = getApplitoolsLogFileNameFor("web");

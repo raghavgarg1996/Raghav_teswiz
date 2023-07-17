@@ -104,3 +104,8 @@ Feature: Scenarios for "The App"
     And "You" login with invalid credentials - "znsio2", "invalid password" on "android"
     When "You" changed to "We"
     Then "We" login again with invalid credentials - "znsio4", "invalid password"
+
+  #  CONFIG=./configs/theapp_local_web_config.properties PLATFORM=web TAG="@web and @theapp and @setHideScrollBar" ./gradlew run
+  @web @setHideScrollBar @theapp
+  Scenario: As a guest user perform scroll action
+    Given I as a guest user perform scroll

@@ -60,4 +60,6 @@ public class AjioSteps {
     public void iShouldBeAbleToPerformFlickAndViewImages() {
         new ProductBL().flickAndViewImages();
     }
+
+
 }
