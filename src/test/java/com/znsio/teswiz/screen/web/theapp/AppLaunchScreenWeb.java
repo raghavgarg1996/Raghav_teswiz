@@ -49,9 +49,9 @@ public class AppLaunchScreenWeb
 
     @Override
     public AppLaunchScreen performScroll() {
-        driver.waitTillElementIsPresent(By.id("pageContent"),5);
+        driver.waitTillElementIsPresent(By.id("content"),5);
         visually.checkWindow(SCREEN_NAME, "Capturing before scroll");
-        driver.scrollToBottom();
+        driver.scrollTillElementIntoView(By.cssSelector("[href=\"/frames\"]"));
         visually.checkWindow(SCREEN_NAME, "Capturing scrollBar details");
         return this;
     }

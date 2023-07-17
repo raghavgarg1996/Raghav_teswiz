@@ -203,7 +203,7 @@ public class Visual {
                 getValueFromConfig(APPLITOOLS.TAKE_FULL_PAGE_SCREENSHOT, true));
 
         addBrowserAndDeviceConfigForUFG(isUFG, configuration);
-        configuration.setHideScrollbars(true);
+//        configuration.setHideScrollbars(true);
         webEyes.setConfiguration(configuration);
 
         applitoolsLogFileNameForWeb = getApplitoolsLogFileNameFor("web");
