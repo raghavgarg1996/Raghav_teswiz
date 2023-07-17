@@ -173,7 +173,7 @@ tasks.register('run', JavaExec) {
     }
     mainClass = "com.znsio.teswiz.runner.Runner"
     classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-    environment "APPLITOOLS_API_KEY", "aWfX0b26105wzwQu778WdAiyS94vOkCQL48ZGspUNli1k110"
+    environment "APPLITOOLS_API_KEY", "VgK7IS103a3vuzMTfHDvgeHLRgK958lbmoanMr103GmprSw110"
 }
 
 test {
