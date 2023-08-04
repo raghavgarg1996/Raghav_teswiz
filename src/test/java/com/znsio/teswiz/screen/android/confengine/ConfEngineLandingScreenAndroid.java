@@ -25,6 +25,7 @@ public class ConfEngineLandingScreenAndroid
 
     @Override
     public ConfEngineLandingScreen getListOfConferences() {
+        driver.waitTillElementIsVisible(By.id("conference-list-page"),180);
         visually.checkWindow(SCREEN_NAME, "Landing screen");
         Set<String> contextNames = ((AppiumDriver) driver.getInnerDriver()).getWindowHandles();
         for(String contextName : contextNames) {
