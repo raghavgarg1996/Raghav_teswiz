@@ -51,4 +51,6 @@ public class IndigoSteps {
         new GiftVoucherBL(SAMPLE_TEST_CONTEXT.ME, Runner.getPlatform()).selectGiftVoucherAndPersonalise(
                 numberOfGiftVouchersToPurchase, denomination, forWhom, customMessage);
     }
+
+
 }
