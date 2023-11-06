@@ -41,4 +41,9 @@ public class HelloWorldBL {
 
         return this;
     }
+
+    public HelloWorldBL pressClickMe() {
+        HelloWorldScreen.get().pressClickMeBtn();
+        return this;
+    }
 }

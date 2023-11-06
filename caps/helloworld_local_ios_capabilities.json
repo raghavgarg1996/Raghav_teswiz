@@ -2,13 +2,13 @@
   "iOS": {
     "platformName": "iOS",
     "app": "https://applitoolsnmlresources.z19.web.core.windows.net/Tutorials/eyes-ios-hello-world.zip",
-    "deviceName": "iPhone",
+    "deviceName": "iPhone 14",
     "preventWDAAttachments": true,
     "clearSystemFiles": true,
     "automationName": "XCUITest",
     "usePrebuiltWDA": false,
     "appium:iPhoneOnly": true,
-    "fullReset": true,
+    "fullReset": false,
     "shouldUseSingletonTestManager": false,
     "simpleIsVisibleCheck": true,
     "maxTypingFrequency": 10

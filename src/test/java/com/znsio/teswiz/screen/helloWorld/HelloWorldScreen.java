@@ -28,4 +28,6 @@ public abstract class HelloWorldScreen {
     }
 
     public abstract HelloWorldScreen generateRandomNumber(int counter);
+
+    public abstract HelloWorldScreen pressClickMeBtn();
 }

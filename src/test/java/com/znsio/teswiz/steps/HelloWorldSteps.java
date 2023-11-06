@@ -9,6 +9,7 @@ import com.znsio.teswiz.entities.SAMPLE_TEST_CONTEXT;
 import com.znsio.teswiz.entities.TEST_CONTEXT;
 import com.znsio.teswiz.runner.Drivers;
 import com.znsio.teswiz.runner.Runner;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
@@ -29,4 +30,8 @@ public class HelloWorldSteps {
         new HelloWorldBL().randomNumberGenerator(numberOfTimes);
     }
 
+    @And("I press Click Me")
+    public void iPressClickMe() {
+        new HelloWorldBL().pressClickMe();
+    }
 }
