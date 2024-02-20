@@ -13,6 +13,7 @@ public class HelloWorldScreenIOS extends HelloWorldScreen {
     private final String SCREEN_NAME = ScreenShotScreenAndroid.class.getSimpleName();
     private final By byMakeRandomNumberCheckbox = AppiumBy.accessibilityId("MakeRandomNumberCheckbox");
     private final By bySimulateDifferenceCheckbox = AppiumBy.accessibilityId("SimulateDiffsCheckbox");
+    private final By byClickMetBtnXpath = AppiumBy.xpath("//XCUIElementTypeStaticText[@name=\"Click me!\"]");
 
 
     public HelloWorldScreenIOS(Driver driver, Visual visually) {
@@ -31,7 +32,7 @@ public class HelloWorldScreenIOS extends HelloWorldScreen {
 
     @Override
     public HelloWorldScreen pressClickMeBtn() {
-        driver.findElement(AppiumBy.accessibilityId(""))
+        driver.findElement(byClickMetBtnXpath).click();
         return this;
     }
 
@@ -41,5 +42,13 @@ public class HelloWorldScreenIOS extends HelloWorldScreen {
         driver.findElement(bySimulateDifferenceCheckbox).click();
         visually.checkWindow(SCREEN_NAME, "SimulateDiffsCheckbox-afterClick-");
         return this;
+    }
+
+    @Override
+    public boolean thumsUpStatus() {
+  //      By isThumsUpVisible = AppiumBy.id("sdcdsc")
+
+        visually.checkWindow(SCREEN_NAME, "SimulateDiffsCheckbox-beforeClick-");
+        return false;
     }
 }

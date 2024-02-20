@@ -11,6 +11,7 @@ import com.znsio.teswiz.runner.Drivers;
 import com.znsio.teswiz.runner.Runner;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 
@@ -33,5 +34,10 @@ public class HelloWorldSteps {
     @And("I press Click Me")
     public void iPressClickMe() {
         new HelloWorldBL().pressClickMe();
+    }
+
+    @Then("I can see the Thumbs Up icon")
+    public void iCanSeeTheThumbsUpIcon() {
+        new HelloWorldBL().validateThumsUp();
     }
 }

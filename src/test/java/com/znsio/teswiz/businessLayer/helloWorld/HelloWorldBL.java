@@ -9,6 +9,8 @@ import com.znsio.teswiz.screen.helloWorld.HelloWorldScreen;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class HelloWorldBL {
     private static final Logger LOGGER = Logger.getLogger(HelloWorldBL.class.getName());
     private final TestExecutionContext context;
@@ -44,6 +46,12 @@ public class HelloWorldBL {
 
     public HelloWorldBL pressClickMe() {
         HelloWorldScreen.get().pressClickMeBtn();
+        return this;
+    }
+
+    public HelloWorldBL validateThumsUp() {
+        boolean isThumsUpVisible = HelloWorldScreen.get().thumsUpStatus();
+        assertThat(isThumsUpVisible).as("ThumsUp not visble").isTrue();
         return this;
     }
 }
